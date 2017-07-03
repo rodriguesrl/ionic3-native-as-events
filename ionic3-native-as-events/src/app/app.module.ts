@@ -6,6 +6,11 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { NativeEventsProvider } from '../providers/native-events/native-events';
+
+//Plugins
+import { Toast } from '@ionic-native/toast';
+import { Clipboard } from '@ionic-native/clipboard';
 
 @NgModule({
   declarations: [
@@ -24,7 +29,10 @@ import { HomePage } from '../pages/home/home';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    NativeEventsProvider,
+    Toast,
+    Clipboard
   ]
 })
 export class AppModule {}
