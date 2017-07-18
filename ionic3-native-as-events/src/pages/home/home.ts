@@ -8,6 +8,9 @@ import { NativeEventsProvider } from '../../providers/native-events/native-event
 export class HomePage {
 
   msg;
+  msg2;
+  subject;
+  url;
 
   constructor(
     public navCtrl: NavController,
@@ -23,12 +26,12 @@ export class HomePage {
     this.events.publish('clipboard', msg);
   }
 
-  socialShare(msg) {
-    this.events.publish('socialShare', msg);
+  socialShare(msg, subject, file, url) {
+    this.events.publish('socialShare', msg, subject, file, url);
   }
 
-  nativeStorage(msg) {
-    this.events.publish('nativeStorage', msg);
+  nativeStorage(data) {
+    this.events.publish('nativeStorage', data);
   }
 
   inAppBrowser(msg) {

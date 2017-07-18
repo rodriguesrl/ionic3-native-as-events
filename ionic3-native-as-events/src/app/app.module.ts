@@ -11,6 +11,7 @@ import { NativeEventsProvider } from '../providers/native-events/native-events';
 //Plugins
 import { Toast } from '@ionic-native/toast';
 import { Clipboard } from '@ionic-native/clipboard';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { Clipboard } from '@ionic-native/clipboard';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     NativeEventsProvider,
     Toast,
-    Clipboard
+    Clipboard,
+    SocialSharing
   ]
 })
 export class AppModule {}

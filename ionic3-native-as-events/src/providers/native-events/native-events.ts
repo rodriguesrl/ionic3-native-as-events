@@ -4,6 +4,7 @@ import { Events } from 'ionic-angular';
 //Plugins
 import { Toast } from '@ionic-native/toast';
 import { Clipboard } from '@ionic-native/clipboard';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 @Injectable()
 export class NativeEventsProvider {
@@ -11,7 +12,8 @@ export class NativeEventsProvider {
   constructor(
     private events: Events,
     private toast: Toast,
-    private clipboard: Clipboard
+    private clipboard: Clipboard,
+    private socialSharing: SocialSharing
   ){
     this.toastEvent();
     this.clipboardEvent();
@@ -31,27 +33,20 @@ export class NativeEventsProvider {
 
   clipboardEvent(){
     this.events.subscribe('clipboard', (msg) => {
-      this.clipboard.copy('aeHOOOOOO').then(data => {
-        console.log("entrou");
-        console.log(data);
-      }, error => {
-        console.log("errou");
-        console.log(error);
-      });
-      console.log("passou");
-      //this.events.publish('toast', 'Copied to Clipboard', 5000, 'bottom');
+      this.clipboard.copy(msg);
+      this.events.publish('toast', 'Clipboard Plugin is Broken!', 2000, 'bottom');
     })
   }
 
   socialShareEvent(){
-    this.events.subscribe('socialShare', (msg) => {
-      console.log(msg)
+    this.events.subscribe('socialShare', (msg, subject, file, url) => {
+      this.socialSharing.share(msg, subject, file, url);
     })
   }
 
   nativeStorageEvent(){
-    this.events.subscribe('nativeStorage', (msg) => {
-      console.log(msg);
+    this.events.subscribe('nativeStorage', (data) => {
+      console.log(data);
     })
   }
 
